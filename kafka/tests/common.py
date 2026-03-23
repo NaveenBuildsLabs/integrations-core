@@ -71,4 +71,6 @@ KAFKA_E2E_METRICS = [
     "kafka.server.socket.connection_count",
     # Broker
     "kafka.broker.start_time",
+    # Topic partition size
+    "kafka.log.partition.size",
 ]

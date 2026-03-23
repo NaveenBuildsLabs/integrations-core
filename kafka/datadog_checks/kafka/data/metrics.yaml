@@ -915,3 +915,21 @@ jmx_metrics:
         - tag_name: kafka_cluster_id
           bean_name: kafka.server:type=KafkaServer,name=ClusterId
           attribute: Value
+
+    #
+    # Topic partition size
+    #
+    - include:
+        domain: 'kafka.log'
+        bean_regex: 'kafka\.log:type=Log,name=Size,topic=(.*),partition=(.*)'
+        attribute:
+          Value:
+            metric_type: gauge
+            alias: kafka.log.partition.size
+        tags:
+          topic: $1
+          partition: $2
+      dynamic_tags:
+        - tag_name: kafka_cluster_id
+          bean_name: kafka.server:type=KafkaServer,name=ClusterId
+          attribute: Value
