@@ -71,9 +71,6 @@ KAFKA_E2E_METRICS = [
     "kafka.server.socket.connection_count",
     # Broker
     "kafka.broker.start_time",
-]
-
-# Metrics that may not be present if no topics exist
-KAFKA_E2E_METRICS_OPTIONAL = [
+    # Topic partition size
     "kafka.log.partition.size",
 ]
