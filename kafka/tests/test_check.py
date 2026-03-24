@@ -7,7 +7,7 @@ import pytest
 from datadog_checks.dev.jmx import JVM_E2E_METRICS_NEW
 from datadog_checks.dev.utils import get_metadata_metrics
 
-from .common import KAFKA_E2E_METRICS
+from .common import KAFKA_E2E_METRICS, KAFKA_E2E_METRICS_OPTIONAL
 
 
 @pytest.mark.e2e
@@ -17,6 +17,9 @@ def test(dd_agent_check):
 
     for metric in KAFKA_E2E_METRICS + JVM_E2E_METRICS_NEW:
         aggregator.assert_metric(metric)
+
+    for metric in KAFKA_E2E_METRICS_OPTIONAL:
+        aggregator.assert_metric(metric, at_least=0)
 
     aggregator.assert_all_metrics_covered()
     aggregator.assert_metrics_using_metadata(get_metadata_metrics(), exclude=JVM_E2E_METRICS_NEW)
